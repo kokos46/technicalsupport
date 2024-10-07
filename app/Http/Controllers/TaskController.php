@@ -13,7 +13,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return view('tasks');
+        $tasks = DB::table('tasks')->where('username', 'xixi')->get();
+        return view('tasks', ['tasks' => $tasks]);
     }
 
     /**
@@ -25,12 +26,7 @@ class TaskController extends Controller
     }
 
     public function insertTask(Request $request){
-        DB::table('tasks')->insert([
-            'title' => $request->get('title'),
-            'task' => $request->get('task'),
-            'username' => 'xixi',
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+        Task::taskCreate($request->get('title'), $request->get('task'));
         return redirect('/techsupport');
     }
 
