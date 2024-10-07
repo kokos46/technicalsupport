@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
@@ -12,7 +13,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('tasks');
     }
 
     /**
@@ -20,7 +21,17 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
+    }
+
+    public function insertTask(Request $request){
+        DB::table('tasks')->insert([
+            'title' => $request->get('title'),
+            'task' => $request->get('task'),
+            'username' => 'xixi',
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+        return redirect('/techsupport');
     }
 
     /**
