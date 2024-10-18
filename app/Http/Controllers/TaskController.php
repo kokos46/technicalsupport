@@ -13,7 +13,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = DB::table('tasks')->where('username', 'xixi')->get();
+        if(!isset($_COOKIE['login'])){
+            return view('login');
+        }
+        $tasks = DB::table('tasks')->where('username', $_COOKIE['login'])->get();
         return view('tasks', ['tasks' => $tasks]);
     }
 
