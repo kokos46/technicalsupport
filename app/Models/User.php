@@ -46,12 +46,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public static function create(string $name, string $email, string $password){
-        $user = new User();
-        $user->name = $name;
-        $user->password = Hash::make($password);
-        $user->email = $email;
-        $user->save();
-    }
 }

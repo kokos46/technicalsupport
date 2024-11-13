@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Models\User;
 
 class UserController extends Controller
 {
     public function registerPage(){
-        return view('auth/register');
+        return view('auth.register');
     }
 
     public function register(Request $request){
@@ -21,12 +20,23 @@ class UserController extends Controller
         $password = Hash::make($request->input('password'));
         $email = $request->input('email');
 
-        $user = DB::table('users')->insert([
+        DB::table('users')->insert([
             'name' => $login,
             'password' => $password,
             'email' => $email,
         ]);
-        return redirect('/');
+
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect('/');
+        }
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     public function loginPage(){
