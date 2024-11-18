@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('title');
             $table->text('task');
             $table->string('username');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

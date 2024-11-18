@@ -20,6 +20,13 @@ class UserController extends Controller
         $password = Hash::make($request->input('password'));
         $email = $request->input('email');
 
+        $users = DB::table('users')->where('name', $login)->first();
+        if ($users != null){
+            return back()->withErrors([
+                'name' => 'Login need to be unique'
+            ]);
+        }
+
         DB::table('users')->insert([
             'name' => $login,
             'password' => $password,
