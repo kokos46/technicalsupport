@@ -30,4 +30,9 @@ class TaskController extends Controller
         }
         return redirect('/login');
     }
+
+    public function openTask(int $task_id){
+        $task = DB::table('tasks')->where('id', $task_id)->first();
+        return view('task', ['task' => $task]);
+    }
 }

@@ -11,7 +11,7 @@
                 <h1>{{$task->title}}</h1>
                 <p>{{$task->task}}</p>
                 <p>{{$task->created_at}}</p>
-
+                <a href="/task/{{$task->id}}">open</a>
             </div>
         @endforeach
     </body>

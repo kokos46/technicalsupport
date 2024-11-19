@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('task');
             $table->string('username');
             $table->boolean('completed')->default(false);
+            $table->text('answer')->nullable();
             $table->timestamps();
         });
     }

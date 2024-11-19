@@ -13,6 +13,12 @@
 @guest
     <a href="/login">Login</a><br>
 @endguest
-<a href="/techsupport">technical support</a>
+@auth
+    @if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
+        <a href="/manager">tasks</a>
+    @elseif(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
+        <a href="/createtask">create task</a>
+    @endif
+@endauth
 </body>
 </html>
