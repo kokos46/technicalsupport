@@ -16,8 +16,8 @@
 @auth
     @if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
         <a href="/manager">tasks</a>
-    @elseif(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
-        <a href="/createtask">create task</a>
+    @elseif(\Illuminate\Support\Facades\Auth::user()['status'] == 'user')
+        <a href="/techsupport">techsupport</a>
     @endif
 @endauth
 </body>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -27,23 +28,10 @@ class UserController extends Controller
             ]);
         }
 
-        DB::table('users')->insert([
-            'name' => $login,
-            'password' => $password,
-            'email' => $email,
-        ]);
+        $user = User::create(['name' => $login,'email'=> $email,'password'=> $password]);
 
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/');
-        }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        Auth::login($user);
+        return redirect('/');
     }
 
     public function loginPage(){

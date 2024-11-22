@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Task;
 
 class ManagerController extends Controller
 {
     public function index(){
-        if(Auth::check()){
+        if(Auth::user()['status'] == 'manager'){
             $tasks = DB::table('tasks')->get();
             return view('manager.index', ['tasks' => $tasks]);
         }
@@ -17,14 +18,15 @@ class ManagerController extends Controller
     }
     public function closetask(int $id){
         if(Auth::check()){
-            DB::table('tasks')->where('id', $id)->update(['completed' => 1]);
+            Task::where('id', $id)->update(['completed'=> 1]);
             return redirect('/manager');
         }
         return view('manager.nopermission');
     }
     public function getAnswer(Request $request, int $id){
         if(Auth::user()['status'] == 'manager'){
-            DB::table('tasks')->where('id', $id)->update(['answer' => $request->input('text')]);
+            // DB::table('tasks')->where('id', $id)->update(['answer' => $request->input('text')]);
+            Task::where('id', $id)->update(['answer' => $request->input('text')]);
             return redirect('/task/'.$id);
         }
         return redirect('/error');

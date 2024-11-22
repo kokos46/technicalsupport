@@ -12,7 +12,7 @@ class TaskController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $tasks = DB::table('tasks')->where('username', Auth::user()['name'])->get();
+            $tasks = Task::where("username", Auth::user()->name)->get();
             return view('tasks', ['tasks' => $tasks]);
         }
         return redirect('/login');
@@ -32,7 +32,7 @@ class TaskController extends Controller
     }
 
     public function openTask(int $task_id){
-        $task = DB::table('tasks')->where('id', $task_id)->first();
+        $task = Task::find($task_id);
         return view('task', ['task' => $task]);
     }
 }
