@@ -21,3 +21,4 @@ Route::get('/closetask/{id}', [ManagerController::class, 'closetask']);
 Route::get('/task/{id}', [TaskController::class, 'openTask']);
 Route::post('/sendmessage/{id}', [ManagerController::class, 'getAnswer']);
 Route::get('/error', [ManagerController::class, 'errorPage']);
+Route::get('/taketask/{id}', [ManagerController::class, 'takeTask']);
