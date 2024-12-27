@@ -6,13 +6,13 @@
 <body>
 @if(isset($taskLatest))
     @if(Carbon::now()->diffInDays($taskLatest) <= -1)
-        <form action="/createtask" method="post">
+        <form action="/createtask" method="post" enctype="multipart/form-data">
             @csrf
             <label for="title">Title</label>
             <input type="text" name="title"><br>
             <label for="task">Task</label>
             <input type="text" name="task"><br>
-            <input type="file">
+            <input type="file" name="image">
             <input type="submit" value="Send">
         </form>
     @else

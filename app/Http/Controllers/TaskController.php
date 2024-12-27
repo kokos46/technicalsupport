@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TaskMailer;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
@@ -33,10 +34,16 @@ class TaskController extends Controller
 
     public function insertTask(Request $request){
         if(Auth::check()){
-                Task::insert(['title' => $request->input("title"),
-                    'task' => $request->input("task"),
-                    'created_at' => Carbon::now()->format('Y-m-d'),
-                    'user_id' => Auth::user()->id]);
+            Task::insert(['title' => $request->input("title"),
+                'task' => $request->input("task"),
+                'created_at' => Carbon::now()->format('Y-m-d'),
+                'user_id' => Auth::user()->id]);
+            $emails = User::where('status', 'manager')->pluck('email')->toArray();
+            Mail::to($emails)->send(new TaskMailer(
+                Auth::user()['name'],
+                $request->input("title"),
+                Carbon::now()->format('Y-m-d'),
+            ));
             return redirect('/techsupport');
         }
         return redirect('/login');

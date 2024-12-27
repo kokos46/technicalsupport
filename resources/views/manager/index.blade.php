@@ -10,33 +10,6 @@
     </style>
 </head>
 <body>
-{{--<select id="filter">--}}
-{{--    <option value="<?php $value = 'all'; echo $value?>">All</option>--}}
-{{--    <option value="active">Active</option>--}}
-{{--    <option value="notActive">Not active</option>--}}
-{{--    <option value="viewed">Viewed</option>--}}
-{{--    <option value="notViewed">Not viewed</option>--}}
-{{--</select>--}}
-
-{{--    @foreach($tasks->reverse() as $task)--}}
-{{--        <div class="managerTask">--}}
-{{--            <h1>{{$task->title}}</h1><br>--}}
-{{--            <h2 id="username">{{$task->username}}</h2><br>--}}
-{{--            <p>{{$task->task}}</p><br>--}}
-{{--            <p>{{$task->created_at}}</p>--}}
-{{--            @if($task->completed)--}}
-{{--                <p style="background-color: black; color: white">closed</p>--}}
-{{--            @else--}}
-{{--                <p style="background-color: green; color: white">active</p>--}}
-{{--            @endif--}}
-{{--            @if(!$task->completed)--}}
-{{--                <a href="/task/{{$task->id}}">open</a>--}}
-{{--            @endif--}}
-{{--            @if($task->manager != null)--}}
-{{--                <p>Taked by: {{$task->manager}}</p>--}}
-{{--            @endif--}}
-{{--        </div>--}}
-{{--    @endforeach--}}
 <select id="filter">
     <option value="all">All</option>
     <option value="active">Active</option>
