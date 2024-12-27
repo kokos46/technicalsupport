@@ -6,6 +6,7 @@
     <h1>{{$task->title}}</h1>
     <h2>{{$task->username}}</h2>
     <p>{{$task->created_at}}</p>
+    <img src="{{ asset($task->filepath) }}" class="card-img-top" alt="{{ $task->title }}">
     <a href="/closetask/{{$task->id}}">close</a>
     @if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
         @if($task->manager == null)

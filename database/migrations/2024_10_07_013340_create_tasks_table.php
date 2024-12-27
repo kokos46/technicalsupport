@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('answer')->nullable();
             $table->string('manager')->nullable();
             $table->boolean('viewed')->default(false);
+            $table->string('filepath')->nullable();
             $table->timestamps();
         });
 
