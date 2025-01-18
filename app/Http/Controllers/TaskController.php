@@ -37,6 +37,12 @@ class TaskController extends Controller
             if($request->isMethod('post')){
                 if ($request->hasFile('image')){
 
+                    $request->validate([
+                        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                        'title' => 'required',
+                        'task' => 'required'
+                    ]);
+
                     $file = $request->file('image');
                     $filename = time() . '_' . $file->getClientOriginalName(); // Генерация уникального имени файла
                     $file->move(public_path('images'), $filename);
@@ -55,7 +61,8 @@ class TaskController extends Controller
                         Carbon::now()->format('Y-m-d'),
                     ));
 
-                    return redirect('/techsupport');
+                    return redirect('/techsupport')
+                        ->with('success', 'Task added successfully!');
                 }
             }
         }

@@ -17,6 +17,13 @@ class UserController extends Controller
     }
 
     public function register(Request $request){
+
+        $request->validate([
+            'email'=>'required|string|unique:users,email',
+            'login'=>'required|max:255|string|unique:users,name',
+            'password'=>'required'
+        ]);
+
         $login = $request->input('login');
         $password = Hash::make($request->input('password'));
         $email = $request->input('email');
@@ -50,7 +57,7 @@ class UserController extends Controller
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        ]);
     }
 
     public function logout(){

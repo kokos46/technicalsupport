@@ -6,8 +6,7 @@
     <h1><?php echo e($task->title); ?></h1>
     <h2><?php echo e($task->username); ?></h2>
     <p><?php echo e($task->created_at); ?></p>
-    <img src="<?php echo e(asset($task->filepath)); ?>" class="card-img-top" alt="<?php echo e($task->title); ?>"
-    style="scale: 20%; display: inline-block">
+    <img src="<?php echo e(asset($task->filepath)); ?>" class="card-img-top" alt="<?php echo e($task->title); ?>">
     <a href="/closetask/<?php echo e($task->id); ?>">close</a>
     <?php if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager'): ?>
         <?php if($task->manager == null): ?>

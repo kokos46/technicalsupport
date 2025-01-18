@@ -14,5 +14,10 @@
         <input type="password" name="password">
         <input type="submit" value="Register">
     </form>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+        @endforeach
+    </ul>
 </body>
 </html>

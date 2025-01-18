@@ -15,6 +15,11 @@
             <input type="file" name="image">
             <input type="submit" value="Send">
         </form>
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     @else
         <h1>You can create 1 task in 24 hours</h1>
     @endif
@@ -28,6 +33,11 @@
         <input type="file" name="image">
         <input type="submit" value="Send">
     </form>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
 @endif
 
 </body>

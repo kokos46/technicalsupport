@@ -17,6 +17,11 @@
             <input type="text" name="text">
             <input type="submit" value="Send">
         </form>
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         @endif
     @endif
     @if($task->manager == null)

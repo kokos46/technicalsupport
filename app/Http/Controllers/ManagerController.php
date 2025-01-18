@@ -40,6 +40,9 @@ class ManagerController extends Controller
     }
     public function getAnswer(Request $request, int $id){
         if(Auth::user()['status'] == 'manager'){
+            $request->validate([
+                'text' => 'required'
+            ]);
             Task::where('id', $id)->update(['answer' => $request->input('text')]);
 
             $userId = Task::where('id', $id)->value('user_id');
