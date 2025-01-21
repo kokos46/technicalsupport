@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\ManagerMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -11,7 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->appendToGroup('auth', [
+            AuthMiddleware::class
+        ]);
+        $middleware->appendToGroup('manager', [
+            ManagerMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

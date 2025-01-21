@@ -39,19 +39,16 @@ class ManagerController extends Controller
         return view('manager.nopermission');
     }
     public function getAnswer(Request $request, int $id){
-        if(Auth::user()['status'] == 'manager'){
-            $request->validate([
-                'text' => 'required'
-            ]);
-            Task::where('id', $id)->update(['answer' => $request->input('text')]);
+        $request->validate([
+            'text' => 'required'
+        ]);
+        Task::where('id', $id)->update(['answer' => $request->input('text')]);
 
-            $userId = Task::where('id', $id)->value('user_id');
-            $userEmail = User::find($userId)->email; // Правильное получение email
+        $userId = Task::where('id', $id)->value('user_id');
+        $userEmail = User::find($userId)->email; // Правильное получение email
 
-            Mail::to($userEmail)->send(new AnswerMail());
-            return redirect('/task/'.$id);
-        }
-        return redirect('/error');
+        Mail::to($userEmail)->send(new AnswerMail());
+        return redirect('/task/'.$id);
     }
     public function errorPage(){
         return view('manager.nopermission');
