@@ -176,5 +176,7 @@
     }
   },
   "active": "287ee9da3a3a9a1a",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "database/seeders/UserSeeder.php"
+  ]
 }

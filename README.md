@@ -27,6 +27,16 @@ MAIL_FROM_NAME
 
 3. Run commands:
 ```
-php artisan migrate
+php artisan migrate --seed
 php artisan serve
 ```
+
+# User and manager
+User: 
+	email: test@example.com
+	login: user
+	password: password
+Manager:
+	email: manager@example.com
+	login: manager
+	password: managerpass
