@@ -28,6 +28,7 @@ MAIL_FROM_NAME
 3. Run commands:
 ```
 php artisan migrate --seed
+php artisan key:generate
 php artisan serve
 ```
 
