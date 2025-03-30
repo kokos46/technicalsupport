@@ -15,6 +15,11 @@
             <input type="file" name="image">
             <input type="submit" value="Send">
         </form>
+        <ul>
+            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </ul>
     <?php else: ?>
         <h1>You can create 1 task in 24 hours</h1>
     <?php endif; ?>
@@ -28,6 +33,11 @@
         <input type="file" name="image">
         <input type="submit" value="Send">
     </form>
+    <ul>
+        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li><?php echo e($error); ?></li>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </ul>
 <?php endif; ?>
 
 </body>

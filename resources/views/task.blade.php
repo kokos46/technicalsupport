@@ -6,7 +6,8 @@
     <h1>{{$task->title}}</h1>
     <h2>{{$task->username}}</h2>
     <p>{{$task->created_at}}</p>
-    <img src="{{ asset($task->filepath) }}" class="card-img-top" alt="{{ $task->title }}">
+    <a href="#" onclick="openImageWindow('{{ asset($task->filepath) }}')">Открыть изображение</a>
+{{--    <img src="{{ asset($task->filepath) }}" class="card-img-top" alt="{{ $task->title }}">--}}
     <a href="/closetask/{{$task->id}}">close</a>
     @if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
         @if($task->manager == null)
@@ -35,5 +36,17 @@
     @else
         <p></p>
     @endif
+    <script>
+        function openImageWindow(src) {
+            var width = 600;
+            var height = 400;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 2;
+
+            var params = 'width=' + width + ', height=' + height + ', top=' + top + ', left=' + left;
+
+            window.open(src, 'image', params);
+        }
+    </script>
 </body>
 </html>

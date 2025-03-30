@@ -6,7 +6,8 @@
     <h1><?php echo e($task->title); ?></h1>
     <h2><?php echo e($task->username); ?></h2>
     <p><?php echo e($task->created_at); ?></p>
-    <img src="<?php echo e(asset($task->filepath)); ?>" class="card-img-top" alt="<?php echo e($task->title); ?>">
+    <a href="#" onclick="openImageWindow('<?php echo e(asset($task->filepath)); ?>')">Открыть изображение</a>
+
     <a href="/closetask/<?php echo e($task->id); ?>">close</a>
     <?php if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager'): ?>
         <?php if($task->manager == null): ?>
@@ -17,6 +18,11 @@
             <input type="text" name="text">
             <input type="submit" value="Send">
         </form>
+            <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
         <?php endif; ?>
     <?php endif; ?>
     <?php if($task->manager == null): ?>
@@ -30,6 +36,18 @@
     <?php else: ?>
         <p></p>
     <?php endif; ?>
+    <script>
+        function openImageWindow(src) {
+            var width = 600; // Ширина окна
+            var height = 400; // Высота окна
+            var left = (screen.width - width) / 2; // Позиция слева
+            var top = (screen.height - height) / 2; // Позиция сверху
+
+            var params = 'width=' + width + ', height=' + height + ', top=' + top + ', left=' + left;
+
+            window.open(src, 'image', params);
+        }
+    </script>
 </body>
 </html>
 <?php /**PATH C:\Users\Konstantin\technicalsupport\resources\views/task.blade.php ENDPATH**/ ?>
