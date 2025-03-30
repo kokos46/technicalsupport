@@ -4,6 +4,7 @@
     <title>Some site - register</title>
 </head>
 <body>
+    <a href="{{ url()->previous() }}">Back</a>
     <form action="/register" method="post">
         @csrf
         <label for="login">Login: </label>

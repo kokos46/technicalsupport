@@ -12,7 +12,7 @@
             <input type="text" name="title"><br>
             <label for="task">Task</label>
             <input type="text" name="task"><br>
-            <input type="file" name="image">
+            <input type="file" name="image" accept="image/png,image/jpg">
             <input type="submit" value="Send">
         </form>
         <ul>

@@ -38,10 +38,10 @@
     <?php endif; ?>
     <script>
         function openImageWindow(src) {
-            var width = 600; // Ширина окна
-            var height = 400; // Высота окна
-            var left = (screen.width - width) / 2; // Позиция слева
-            var top = (screen.height - height) / 2; // Позиция сверху
+            var width = 600;
+            var height = 400;
+            var left = (screen.width - width) / 2;
+            var top = (screen.height - height) / 2;
 
             var params = 'width=' + width + ', height=' + height + ', top=' + top + ', left=' + left;
 

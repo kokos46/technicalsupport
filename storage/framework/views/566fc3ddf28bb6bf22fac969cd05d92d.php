@@ -4,6 +4,7 @@
     <title>Some site - register</title>
 </head>
 <body>
+    <a href="<?php echo e(url()->previous()); ?>">Back</a>
     <form action="/register" method="post">
         <?php echo csrf_field(); ?>
         <label for="login">Login: </label>

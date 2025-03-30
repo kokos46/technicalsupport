@@ -33,7 +33,7 @@ class TaskController extends Controller
             if ($request->hasFile('image')){
 
                 $request->validate([
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+                    'image' => 'required|image|mimes:jpeg,png,jpg',
                     'title' => 'required',
                     'task' => 'required'
                 ]);
