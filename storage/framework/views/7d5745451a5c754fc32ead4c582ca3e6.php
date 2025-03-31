@@ -4,6 +4,7 @@
     <title>Some site - login</title>
 </head>
 <body>
+<a href="<?php echo e(url()->previous()); ?>">Back</a>
 <form action="/login" method="post">
     <?php echo csrf_field(); ?>
     <label for="email">Email: </label>

@@ -11,7 +11,7 @@
             <label for="title">Title</label>
             <input type="text" name="title"><br>
             <label for="task">Task</label>
-            <input type="text" name="task"><br>
+            <textarea name="task" style="width: 200px; height: 200px; resize: none"></textarea><br>
             <input type="file" name="image" accept="image/png,image/jpg">
             <input type="submit" value="Send">
         </form>
