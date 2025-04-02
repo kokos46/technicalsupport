@@ -2,6 +2,31 @@
 <html>
 <head>
     <title>Some site - register</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+        }
+        a {
+            text-decoration: none;
+            background: cornflowerblue;
+            color: white;
+            padding: 20px;
+            border-radius: 4px;
+            border: solid 1px black;
+            transition: ease .3s;
+        }
+
+        a:hover {
+            color: black;
+            background: white;
+        }
+        form {
+            margin: 40px;
+        }
+        form input[type="submit"]{
+            background: cornflowerblue;
+        }
+    </style>
 </head>
 <body>
     <a href="{{ url()->previous() }}">Back</a>
