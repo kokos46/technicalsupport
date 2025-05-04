@@ -2403,3 +2403,46 @@ Content-Transfer-Encoding: quoted-printable
 </body>
 </html>
   
+[2025-05-04 01:43:54] local.DEBUG: From: TechnicalSupport <techsupport@mail.ru>
+To: manager@example.com
+Subject: New ticket!
+MIME-Version: 1.0
+Date: Sun, 04 May 2025 01:43:54 +0000
+Message-ID: <c69bbd0f150da8efbc95e799bce69f90@mail.ru>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+    <title>mail</title>
+</head>
+<body>
+    <h1>New Ticket!</h1>
+    <h2>From: sdfasdf</h2>
+    <h2>Title: kokokok</h2>
+    <h2>Date: 2025-05-04</h2>
+</body>
+</html>
+  
+[2025-05-04 01:45:02] local.DEBUG: From: Tech support <noreply@mail.com>
+To: mamka@mamka.com
+Subject: Answer Mail
+MIME-Version: 1.0
+Date: Sun, 04 May 2025 01:45:02 +0000
+Message-ID: <75a9769c1377719b483b6d94c83e08a6@mail.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+You got manager's answer
+  
+[2025-05-04 01:45:09] local.DEBUG: From: Tech support <noreply@mail.com>
+To: mamka@mamka.com
+Subject: Answer Mail
+MIME-Version: 1.0
+Date: Sun, 04 May 2025 01:45:09 +0000
+Message-ID: <59c7bcf66866375bb365a071802b0901@mail.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+You got manager's answer
+  

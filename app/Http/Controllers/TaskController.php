@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 class TaskController extends Controller
 {
@@ -41,6 +42,9 @@ class TaskController extends Controller
                 $file = $request->file('image');
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('images'), $filename);
+
+                $optimizer = OptimizerChainFactory::create();
+                $optimizer->optimize(public_path('images/'.$filename));
             }
 
             Task::insert([
