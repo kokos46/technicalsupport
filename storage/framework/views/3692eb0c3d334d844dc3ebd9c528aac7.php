@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Active tasks</title>
-    @vite(['resources/js/app.js'])
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.js']); ?>
 </head>
 <body>
 <div class="container my-4">
@@ -22,34 +22,35 @@
     </div>
 
     <div id="taskContainer" class="row gy-4">
-        @foreach($tasks->reverse() as $task)
+        <?php $__currentLoopData = $tasks->reverse(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="col-12">
                 <div class="card managerTask
-                    {{ $task->completed ? 'notActive' : 'active' }}
-                    {{ $task->viewed ? 'viewed' : 'notViewed' }}">
+                    <?php echo e($task->completed ? 'notActive' : 'active'); ?>
+
+                    <?php echo e($task->viewed ? 'viewed' : 'notViewed'); ?>">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $task->title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $task->username }}</h6>
-                        <p class="card-text">{{ $task->task }}</p>
-                        <p class="text-muted mb-1"><small>Created at: {{ $task->created_at }}</small></p>
+                        <h5 class="card-title"><?php echo e($task->title); ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo e($task->username); ?></h6>
+                        <p class="card-text"><?php echo e($task->task); ?></p>
+                        <p class="text-muted mb-1"><small>Created at: <?php echo e($task->created_at); ?></small></p>
 
-                        @if($task->completed)
+                        <?php if($task->completed): ?>
                             <span class="badge bg-dark">Closed</span>
-                        @else
+                        <?php else: ?>
                             <span class="badge bg-success">Active</span>
-                        @endif
+                        <?php endif; ?>
 
-                        @if(!$task->completed)
-                            <a href="/task/{{$task->id}}" class="btn btn-primary btn-sm ms-2">Open</a>
-                        @endif
+                        <?php if(!$task->completed): ?>
+                            <a href="/task/<?php echo e($task->id); ?>" class="btn btn-primary btn-sm ms-2">Open</a>
+                        <?php endif; ?>
 
-                        @if($task->manager != null)
-                            <p class="mt-2 mb-0"><small>Taken by: <strong>{{ $task->manager }}</strong></small></p>
-                        @endif
+                        <?php if($task->manager != null): ?>
+                            <p class="mt-2 mb-0"><small>Taken by: <strong><?php echo e($task->manager); ?></strong></small></p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </div>
 </div>
 
@@ -81,3 +82,4 @@
 </script>
 </body>
 </html>
+<?php /**PATH C:\Users\virus\OneDrive\Desktop\techsupport\resources\views/manager/index.blade.php ENDPATH**/ ?>

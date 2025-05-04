@@ -30,37 +30,39 @@ class TaskController extends Controller
 
     public function insertTask(Request $request){
         if($request->isMethod('post')){
+            $request->validate([
+                'title' => 'required',
+                'task' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg'
+            ]);
+
+            $filename = null;
             if ($request->hasFile('image')){
-
-                $request->validate([
-                    'image' => 'required|image|mimes:jpeg,png,jpg',
-                    'title' => 'required',
-                    'task' => 'required'
-                ]);
-
                 $file = $request->file('image');
-                $filename = time() . '_' . $file->getClientOriginalName(); // Генерация уникального имени файла
+                $filename = time() . '_' . $file->getClientOriginalName();
                 $file->move(public_path('images'), $filename);
-
-                Task::insert(['title' => $request->input("title"),
-                    'task' => $request->input("task"),
-                    'created_at' => Carbon::now()->format('Y-m-d'),
-                    'user_id' => Auth::user()->id,
-                    'filepath' => '/images/'.$filename
-                ]);
-
-                $emails = User::where('status', 'manager')->pluck('email')->toArray();
-                Mail::to($emails)->send(new TaskMailer(
-                    Auth::user()['name'],
-                    $request->input("title"),
-                    Carbon::now()->format('Y-m-d'),
-                ));
-
-                return redirect('/techsupport')
-                    ->with('success', 'Task added successfully!');
             }
+
+            Task::insert([
+                'title' => $request->input("title"),
+                'task' => $request->input("task"),
+                'created_at' => Carbon::now()->format('Y-m-d'),
+                'user_id' => Auth::user()->id,
+                'filepath' => $filename ? '/images/'.$filename : null
+            ]);
+
+            $emails = User::where('status', 'manager')->pluck('email')->toArray();
+            Mail::to($emails)->send(new TaskMailer(
+                Auth::user()['name'],
+                $request->input("title"),
+                Carbon::now()->format('Y-m-d'),
+            ));
+
+            return redirect('/techsupport')
+                ->with('success', 'Task added successfully!');
         }
     }
+
 
     public function openTask(int $task_id){
         $task = Task::find($task_id);

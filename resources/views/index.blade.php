@@ -7,7 +7,7 @@
 <h1>Some site</h1>
 @auth
     <h1>{{$user}}</h1>
-    <a href="/logout">log out</a>
+    <a class="btn btn-primary" href="/logout">log out</a>
     <br>
 @endauth
 <a class="btn btn-primary" href="/register">Register</a>
@@ -16,9 +16,9 @@
 @endguest
 @auth
     @if(\Illuminate\Support\Facades\Auth::user()['status'] == 'manager')
-        <a href="/manager">tasks</a>
+        <a class="btn btn-primary" href="/manager">tasks</a>
     @elseif(\Illuminate\Support\Facades\Auth::user()['status'] == 'user')
-        <a href="/techsupport">techsupport</a>
+        <a class="btn btn-primary" href="/techsupport">techsupport</a>
     @endif
 @endauth
 </body>
