@@ -20,23 +20,14 @@
                         <div class="mb-3">
                             <label for="login" class="form-label">Логин</label>
                             <input type="text" name="login" id="login" class="form-control @error('login') is-invalid @enderror" value="{{ old('login') }}" required>
-                            @error('login')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                            @error('email')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Пароль</label>
                             <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required>
-                            @error('password')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="d-grid mb-2">
                             <button type="submit" class="btn btn-primary">Зарегистрироваться</button>

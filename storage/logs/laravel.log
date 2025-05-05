@@ -2446,3 +2446,53 @@ Content-Transfer-Encoding: quoted-printable
 
 You got manager's answer
   
+[2025-05-05 01:44:58] local.DEBUG: From: TechnicalSupport <techsupport@mail.ru>
+To: manager@example.com
+Subject: New ticket!
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 01:44:58 +0000
+Message-ID: <15863af0c73e7d635e4c5383e1dd953c@mail.ru>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+    <title>mail</title>
+</head>
+<body>
+    <h1>New Ticket!</h1>
+    <h2>From: Some task</h2>
+    <h2>Title: user</h2>
+    <h2>Date: 2025-05-05</h2>
+</body>
+</html>
+  
+[2025-05-05 01:46:26] local.DEBUG: From: Tech support <noreply@mail.com>
+To: test@example.com
+Subject: Answer Mail
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 01:46:26 +0000
+Message-ID: <49f9478dd9ca500d37cf021f9cf355a9@mail.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+You got manager's answer
+  
+[2025-05-05 01:49:21] local.DEBUG: From: Tech support <noreply@mail.com>
+To: manager@example.com
+Subject: Close Task Mail
+MIME-Version: 1.0
+Date: Mon, 05 May 2025 01:49:21 +0000
+Message-ID: <988432d3abe2236943c2afb7743d93c3@mail.com>
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+    <title>qwret</title>
+</head>
+<body>
+<h1>Ticket 4 was closed</h1>
+</body>
+</html>
+  
