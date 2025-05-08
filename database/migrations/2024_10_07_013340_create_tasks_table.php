@@ -16,9 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title');
-            $table->text('task');
             $table->boolean('completed')->default(false);
-            $table->text('answer')->nullable();
             $table->string('manager')->nullable();
             $table->boolean('viewed')->default(false);
             $table->string('filepath')->nullable();

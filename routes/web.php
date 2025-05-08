@@ -21,10 +21,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [UserController::class, 'logout']); // log out
     Route::get('/closetask/{id}', [ManagerController::class, 'closetask']); // request to close task
     Route::get('/task/{id}', [TaskController::class, 'openTask']); // show task
-    
+    Route::post('/sendmessage/{id}', [TaskController::class, 'sendMessage']);
+
     Route::middleware(['manager'])->group(function () {
         Route::get('/manager', [ManagerController::class, 'index'])->middleware(ManagerMiddleware::class); // manager task list
-        Route::post('/sendmessage/{id}', [ManagerController::class, 'getAnswer']); // send message to user
+//        Route::post('/sendmessage/{id}', [ManagerController::class, 'getAnswer']); // send message to user
         Route::get('/error', [ManagerController::class, 'errorPage']); // error
         Route::get('/taketask/{id}', [ManagerController::class, 'takeTask']); // manager task taking
     });

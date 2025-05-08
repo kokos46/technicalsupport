@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\TaskMailer;
+use App\Models\Comment;
 use App\Models\Task;
 use App\Models\User;
 use Carbon\Carbon;
@@ -49,10 +50,16 @@ class TaskController extends Controller
 
             Task::insert([
                 'title' => $request->input("title"),
-                'task' => $request->input("task"),
                 'created_at' => Carbon::now()->format('Y-m-d'),
                 'user_id' => Auth::user()->id,
                 'filepath' => $filename ? '/images/'.$filename : null
+            ]);
+
+            Comment::insert([
+                'task_id' => Task::where('title', $request->input("title"))->first()->id,
+                'username' => Auth::user()->name,
+                'comment' => $request->input("task"),
+                'created_at' => Carbon::now()->format('Y-m-d'),
             ]);
 
             $emails = User::where('status', 'manager')->pluck('email')->toArray();
@@ -70,11 +77,28 @@ class TaskController extends Controller
 
     public function openTask(int $task_id){
         $task = Task::find($task_id);
+        $username = User::find($task->user_id)->name;
+        $comments = Task::find($task_id)->comments()->get();
 
         if (Auth::user()->status == 'manager'){
             Task::where('id', $task_id)->update(['viewed'=> true]);
         }
 
-        return view('task', ['task' => $task]);
+        return view('task', ['task' => $task, 'comments' => $comments, 'username' => $username]);
+    }
+
+    public function sendMessage(int $id, Request $request){
+        $request->validate([
+            'text' => 'required'
+        ]);
+
+        Comment::insert([
+            'task_id' => $id,
+            'username' => Auth::user()->name,
+            'comment' => $request->input("text"),
+            'created_at' => Carbon::now()->format('Y-m-d'),
+        ]);
+
+        return redirect()->back();
     }
 }
